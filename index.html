@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Islamic Guidance</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-mosque"></i>
+                <span data-i18n="app-title">Islamic Guidance</span>
+            </div>
+            <div class="nav-links">
+                <a href="#home" class="nav-link active" data-i18n="nav-home">Home</a>
+                <a href="#qibla" class="nav-link" data-i18n="nav-qibla">Qibla</a>
+                <a href="#prayer-times" class="nav-link" data-i18n="nav-prayer-times">Prayer Times</a>
+                <a href="#namaz-guide" class="nav-link" data-i18n="nav-namaz-guide">Namaz Guide</a>
+                <a href="#dua" class="nav-link" data-i18n="nav-dua">Dua Suggestions</a>
+            </div>
+            <div class="language-switcher">
+                <button id="lang-toggle" class="lang-btn">
+                    <i class="fas fa-language"></i>
+                    <span id="current-lang">EN</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Home Section -->
+        <section id="home" class="section active">
+            <div class="hero">
+                <h1 data-i18n="hero-title">Welcome to Islamic Guidance</h1>
+                <p data-i18n="hero-subtitle">Your digital companion for spiritual support and guidance</p>
+                <div class="feature-cards">
+                    <div class="feature-card">
+                        <i class="fas fa-compass"></i>
+                        <h3 data-i18n="feature-qibla">Qibla Direction</h3>
+                        <p data-i18n="feature-qibla-desc">Find the direction to Mecca from anywhere</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-clock"></i>
+                        <h3 data-i18n="feature-prayer">Prayer Times</h3>
+                        <p data-i18n="feature-prayer-desc">Accurate prayer times for your location</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-book-quran"></i>
+                        <h3 data-i18n="feature-namaz">Namaz Guide</h3>
+                        <p data-i18n="feature-namaz-desc">Step-by-step guidance for prayers</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-hands-praying"></i>
+                        <h3 data-i18n="feature-dua">Dua Suggestions</h3>
+                        <p data-i18n="feature-dua-desc">AI-powered dua recommendations</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Qibla Section -->
+        <section id="qibla" class="section">
+            <div class="section-header">
+                <h2 data-i18n="qibla-title">Qibla Direction</h2>
+                <p data-i18n="qibla-subtitle">Find the direction to the Kaaba in Mecca</p>
+            </div>
+            <div class="qibla-container">
+                <div class="compass-wrapper">
+                    <div class="compass">
+                        <div class="compass-needle" id="qibla-needle"></div>
+                        <div class="compass-markers">
+                            <div class="marker marker-n">N</div>
+                            <div class="marker marker-e">E</div>
+                            <div class="marker marker-s">S</div>
+                            <div class="marker marker-w">W</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="qibla-info">
+                    <div class="info-card">
+                        <i class="fas fa-location-dot"></i>
+                        <div>
+                            <h3 data-i18n="qibla-location">Your Location</h3>
+                            <p id="user-location" data-i18n="qibla-location-loading">Loading...</p>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-angle-right"></i>
+                        <div>
+                            <h3 data-i18n="qibla-direction">Qibla Direction</h3>
+                            <p id="qibla-angle">-</p>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-ruler"></i>
+                        <div>
+                            <h3 data-i18n="qibla-distance">Distance to Mecca</h3>
+                            <p id="qibla-distance">-</p>
+                        </div>
+                    </div>
+                    <div class="manual-location">
+                        <input id="country-search-qibla" class="input-search" placeholder="Search country">
+                        <datalist id="country-list-qibla"></datalist>
+                        <select id="country-qibla" class="input-select">
+                            <option value="">Select Country</option>
+                        </select>
+                    </div>
+                    <button id="get-qibla" class="btn btn-primary" data-i18n="qibla-get-direction">Use My Location</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Prayer Times Section -->
+        <section id="prayer-times" class="section">
+            <div class="section-header">
+                <h2 data-i18n="prayer-title">Prayer Times</h2>
+                <p data-i18n="prayer-subtitle">Today's prayer times for your location</p>
+            </div>
+            <div class="prayer-container">
+                <div class="prayer-date">
+                    <i class="fas fa-calendar"></i>
+                    <span id="current-date"></span>
+                </div>
+                <div class="prayer-cards">
+                    <div class="prayer-card" data-prayer="fajr">
+                        <div class="prayer-icon">
+                            <i class="fas fa-sun"></i>
+                        </div>
+                        <h3 data-i18n="prayer-fajr">Fajr</h3>
+                        <p class="prayer-time" id="fajr-time">--:--</p>
+                        <p class="prayer-arabic">الفجر</p>
+                    </div>
+                    <div class="prayer-card" data-prayer="dhuhr">
+                        <div class="prayer-icon">
+                            <i class="fas fa-sun"></i>
+                        </div>
+                        <h3 data-i18n="prayer-dhuhr">Dhuhr</h3>
+                        <p class="prayer-time" id="dhuhr-time">--:--</p>
+                        <p class="prayer-arabic">الظهر</p>
+                    </div>
+                    <div class="prayer-card" data-prayer="asr">
+                        <div class="prayer-icon">
+                            <i class="fas fa-sun"></i>
+                        </div>
+                        <h3 data-i18n="prayer-asr">Asr</h3>
+                        <p class="prayer-time" id="asr-time">--:--</p>
+                        <p class="prayer-arabic">العصر</p>
+                    </div>
+                    <div class="prayer-card" data-prayer="maghrib">
+                        <div class="prayer-icon">
+                            <i class="fas fa-moon"></i>
+                        </div>
+                        <h3 data-i18n="prayer-maghrib">Maghrib</h3>
+                        <p class="prayer-time" id="maghrib-time">--:--</p>
+                        <p class="prayer-arabic">المغرب</p>
+                    </div>
+                    <div class="prayer-card" data-prayer="isha">
+                        <div class="prayer-icon">
+                            <i class="fas fa-moon"></i>
+                        </div>
+                        <h3 data-i18n="prayer-isha">Isha</h3>
+                        <p class="prayer-time" id="isha-time">--:--</p>
+                        <p class="prayer-arabic">العشاء</p>
+                    </div>
+                </div>
+                <div class="next-prayer">
+                    <h3 data-i18n="prayer-next">Next Prayer</h3>
+                    <p id="next-prayer-info">-</p>
+                </div>
+                <div class="manual-location">
+                    <input id="country-search-prayer" class="input-search" placeholder="Search country">
+                    <datalist id="country-list-prayer"></datalist>
+                    <select id="country-prayer" class="input-select">
+                        <option value="">Select Country</option>
+                    </select>
+                </div>
+                <button id="get-prayer-times" class="btn btn-primary" data-i18n="prayer-get-times">Use My Location</button>
+            </div>
+        </section>
+
+        <!-- Namaz Guide Section -->
+        <section id="namaz-guide" class="section">
+            <div class="section-header">
+                <h2 data-i18n="namaz-title">Namaz (Salah) Guide</h2>
+                <p data-i18n="namaz-subtitle">Step-by-step guidance for performing prayers</p>
+            </div>
+            <div class="namaz-container">
+                <div class="namaz-selector">
+                    <button class="namaz-btn active" data-namaz="fajr" data-i18n="namaz-fajr">Fajr (2 Rak'ah)</button>
+                    <button class="namaz-btn" data-namaz="dhuhr" data-i18n="namaz-dhuhr">Dhuhr (4 Rak'ah)</button>
+                    <button class="namaz-btn" data-namaz="asr" data-i18n="namaz-asr">Asr (4 Rak'ah)</button>
+                    <button class="namaz-btn" data-namaz="maghrib" data-i18n="namaz-maghrib">Maghrib (3 Rak'ah)</button>
+                    <button class="namaz-btn" data-namaz="isha" data-i18n="namaz-isha">Isha (4 Rak'ah)</button>
+                </div>
+                <div class="namaz-steps" id="namaz-steps">
+                    <!-- Steps will be dynamically loaded -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Dua Suggestions Section -->
+        <section id="dua" class="section">
+            <div class="section-header">
+                <h2 data-i18n="dua-title">Dua Suggestions</h2>
+                <p data-i18n="dua-subtitle">AI-powered dua recommendations based on your needs</p>
+            </div>
+            <div class="dua-container">
+                <div class="dua-input-section">
+                    <div class="input-group">
+                        <label for="dua-context" data-i18n="dua-context-label">What do you need dua for?</label>
+                        <textarea id="dua-context" rows="4" placeholder="Enter your situation or need..." data-i18n-placeholder="dua-context-placeholder"></textarea>
+                    </div>
+                    <button id="get-dua" class="btn btn-primary" data-i18n="dua-get-suggestion">Get Dua Suggestion</button>
+                </div>
+                <div class="dua-results" id="dua-results">
+                    <div class="dua-card" style="display: none;">
+                        <div class="dua-header">
+                            <h3 class="dua-title"></h3>
+                            <span class="dua-category"></span>
+                        </div>
+                        <div class="dua-arabic"></div>
+                        <div class="dua-transliteration"></div>
+                        <div class="dua-translation"></div>
+                        <div class="dua-meaning"></div>
+                    </div>
+                </div>
+                <div class="dua-loading" id="dua-loading" style="display: none;">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p data-i18n="dua-loading">Loading dua suggestions...</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p data-i18n="footer-text">&copy; 2025 Islamic Guidance. May Allah bless you.</p>
+        </div>
+    </footer>
+
+    <script src="i18n.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
+
