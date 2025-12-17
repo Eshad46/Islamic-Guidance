@@ -1006,9 +1006,22 @@
                     return;
                 }
 
-                // Fallback to keyword/local (no random mis-match; default to healing dua)
-                const match = bestKeywordMatch(duaList, text) || duaList.find((d) => d.title === 'Healing and Health');
-                renderDua(match);
+                // Fallback to keyword/local only (no forced healing default)
+                const match = bestKeywordMatch(duaList, text);
+                if (match) {
+                    renderDua(match);
+                } else {
+                    renderDua({
+                        title: 'General Supplication',
+                        category: 'Reminder',
+                        arabic: 'الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ',
+                        transliteration: 'Alhamdu lillāhi rabbil-ʿālamīn',
+                        translation:
+                            'All praise is for Allah, Lord of all worlds. Please try describing your situation with different words for a more specific dua.',
+                        meaning:
+                            'A general remembrance when no specific dua from the list matches your exact situation.',
+                    });
+                }
                 loading.style.display = 'none';
             }, 300);
         });
